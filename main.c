@@ -3,27 +3,24 @@
 
 int main(void)
 {
-    char input[100];
-    int i;
     FILE*fp = NULL;
+    char c;
+    char input[100];
+    fp = fopen("sample.txt", "r");
+    if(fp == NULL)
+       printf("Can't open.\n");
     
-    //fopen
-    fp = fopen("sample.txt", "w");
-    if (fp == NULL)
-    {
-           printf("Can't open.\n");
-           return;
-    }
+    //fgetc
+    #if 0
+    while((c = fgetc(fp)) != EOF)
+      putchar(c);
+    #endif
     
-    //fprintf
-    for(i=0;i<3;i++)
-    {
-        printf("input a word: ");
-        scanf("%s", input);
-        fprintf(fp, "%s\n", input);
-    }
+    //fgets
+    while(fgets(input,100,fp) > 0)
+       printf("%s", input);
+                              
     
-    //fclose
     fclose(fp);
   
   system("PAUSE");	
